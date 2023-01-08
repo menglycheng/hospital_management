@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="tree_view_tree" model="ir.ui.view">
+            <field name="name">hospital.patient.tree</field>
+            <field name="model">patient.data</field>
+            <field name="arch" type="xml">
+                <tree string="Patient">
+                    <field name="reference"/>
+                    <field name="patient_name_eng"/>
+                    <field name="patient_name_kh"/>
+                    <field name="patient_parent_name"/>
+                    <field name="patient_tel"/>
+                </tree>
+            </field>
+        </record>
+        <record id="patient_form" model="ir.ui.view">
+            <field name="name">hospital.patient.form</field>
+            <field name="model">patient.data</field>
+            <field name="arch" type="xml">
+                <form string="Patient">
+                    <header>
+                        <button name="%(hospital_management.create_appointment_wizard)d" type="action"
+                                string="Create Appointment" class="oe_highlight"
+                                context="{'default_patient_id': active_id}"/>
+                    </header>
+
+                    <sheet>
+                        <field name="patient_image" widget="image" class="oe_avatar"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="reference" readonly="1"/>
+                            </h1>
+
+                        </div>
+                        <div>
+                            <h3 class="mb-5 text-gray">Patient Data</h3>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="patient_name_eng" autocomplete="off"/>
+                                <field name="patient_name_kh" autocomplete="off"/>
+                            </group>
+                            <group>
+                                <field name="gender" autocomplete="off"/>
+                                <field name="date_birth" autocomplete="off"/>
+                                <field name="patient_age" autocomplete="off" readonly="1"/>
+
+
+                            </group>
+                        </group>
+                        <div>
+                            <h3 class="my-5 text-gray">Patient's Parent Data</h3>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="patient_parent_name" autocomplete="off"/>
+                            </group>
+                            <group>
+                                <field name="patient_tel" autocomplete="off"/>
+
+                            </group>
+                        </group>
+                        <group>
+                            <field name="patient_address" autocomplete="off"/>
+                        </group>
+                        <group>
+                            <field name="appointment_count" autocomplete="off"/>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="patient_resigter_form" model="ir.actions.act_window">
+            <field name="name">Hospital Management</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">patient.data</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new patient !
+                </p>
+            </field>
+        </record>
+        <menuitem id="menu_hospital_root" name="Hospital Management" sequence="1"/>
+        <menuitem id="menu_patient_root" name="Patients" parent="menu_hospital_root" action="patient_resigter_form"
+                  sequence="2"/>
+    </data>
+</odoo>
