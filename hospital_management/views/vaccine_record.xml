@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="vaccine_record_view_tree" model="ir.ui.view">
+            <field name="name">vaccine.record.tree</field>
+            <field name="model">vaccine.record</field>
+            <field name="arch" type="xml">
+                <tree string="Vaccine">
+                    <field name="patient_id"/>
+                    <field name="vaccine_record"/>
+                    <field name="by_doctor"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="vaccine_record_form" model="ir.ui.view">
+            <field name="name">vaccine.record.form</field>
+            <field name="model">vaccine.record</field>
+            <field name="arch" type="xml">
+                <form string="Vaccine Record">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="patient_id" autocomplete="off"/>
+                            </group>
+                            <group>
+                                <field name="vaccine_record" autocomplete="off"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="by_doctor" autocomplete="off"/>
+                            </group>
+                            <group>
+                                <field name="date" autocomplete="off"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="action_vaccine_record" model="ir.actions.act_window">
+            <field name="name">Vaccine Record</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vaccine.record</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new appointment, the first step of a new sale!
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_vaccine_record" name="Vaccine Record" parent="menu_record_root"
+                  sequence="2" action="action_vaccine_record"/>
+    </data>
+
+</odoo>
+

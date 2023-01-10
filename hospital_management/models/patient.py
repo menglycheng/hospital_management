@@ -2,10 +2,11 @@
 from odoo import api, fields, models, _
 from datetime import date
 
+
 class PatientData(models.Model):
     _name = 'patient.data'
     _description = 'Keep all patient data'
-    _rec_name = 'reference'
+    _rec_name = 'patient_name_eng'
     _order = 'reference DESC'
 
     reference = fields.Char('Reference', required=True, copy=False, readonly=True, default=lambda self: _("New"))
@@ -22,12 +23,13 @@ class PatientData(models.Model):
     patient_tel = fields.Char("Phone Number")
 
     appointment_count = fields.Integer('Appointment Total', compute='_compute_appointment_count')
+    vaccine_count = fields.Integer('Vaccine Total', compute='_compute_vaccine_count')
 
     @api.model
     def create(self, vals):
         if vals.get('reference', _('New')) == _('New'):
             vals['reference'] = self.env['ir.sequence'].next_by_code('patient.data') or _("New")
-        res = super(PatientData,self).create(vals)
+        res = super(PatientData, self).create(vals)
         return res
 
     @api.depends('date_birth')
@@ -51,3 +53,8 @@ class PatientData(models.Model):
         for rec in self:
             appointment_count = rec.env['patient.appointment'].search_count([('patient_id', '=', self.id)])
             rec.appointment_count = appointment_count
+
+    def _compute_vaccine_count(self):
+        for rec in self:
+            vaccine_count = rec.env['vaccine.record'].search_count([('patient_id', '=', self.id)])
+            rec.vaccine_count = vaccine_count

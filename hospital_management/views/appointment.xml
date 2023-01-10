@@ -22,7 +22,10 @@
                             </group>
 
                         </group>
+                        <group>
+                            <field name="by_doctor" autocomplete="off"/>
 
+                        </group>
                         <group>
                             <field name="notes" autocomplete="off"/>
                         </group>
@@ -32,9 +35,35 @@
                             </page>
                             <page string="Growth Record" name="growth_record">
 
-                            </page>
-                             <page string="Medicine" name="medicine">
+                                <div class="d-lg-flex">
+                                    <div class="flex-grow-1">
+                                        <field name="height"/>
 
+                                    </div>
+                                </div>
+
+
+                            </page>
+                            <page string="Medicine" name="medicine">
+                                <field name="medicine_list">
+                                    <tree editable="bottom">
+                                        <field name="medicine_id"/>
+                                        <field name="medicine_qty"/>
+                                        <field name="unit_price"/>
+                                        <field name="sub_price"/>
+                                        <field name="appointment_id" invisible="1"/>
+                                    </tree>
+                                </field>
+                                <div slyte="float:right;">
+                                    <group name="note_group" col="6" class="mt-2 mt-md-0">
+                                        <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+
+                                            <field name="usd_total_price"/>
+                                            <field name="kh_total_price"/>
+                                        </group>
+                                        <div class="oe_clear"/>
+                                    </group>
+                                </div>
                             </page>
                         </notebook>
                     </sheet>
@@ -53,8 +82,11 @@
             </field>
         </record>
 
-        <menuitem id="menu_appointment_root" name="Appointment" parent="menu_hospital_root" action="action_appointment"
+        <menuitem id="menu_record_root" name="Record Patient" parent="menu_hospital_root"
                   sequence="4"/>
+
+        <menuitem id="menu_appointment_root" name="Appointment" parent="menu_record_root" action="action_appointment"
+                  sequence="1"/>
 
     </data>
 

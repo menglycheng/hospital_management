@@ -7,14 +7,17 @@
     'category': 'Hospital',
     'website': '',
 
-    'depends' : ['base_setup'],
+    'depends' : ['base_setup','hr'],
     'data': [
         'security/ir.model.access.csv',
-        'data/data.xml',
         'menus/menu.xml',
+        'data/data.xml',
         'wizard/create_appointment.xml',
         'views/resigter.xml',
         'views/appointment.xml',
+        'views/vaccine.xml',
+        'views/medicine.xml',
+        'views/vaccine_record.xml',
     ],
     'demo': [
 

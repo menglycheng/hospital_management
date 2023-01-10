@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+<!--        <record id="patient_appointment_form" model="ir.ui.view">-->
+<!--            <field name="name">patient.appointment.form</field>-->
+<!--            <field name="model">patient.appointment</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Appointment">-->
+<!--                    <sheet>-->
+<!--                        <div class="oe_title">-->
+<!--                            <h1>-->
+<!--                                <field name="appointment_id" readonly="1"/>-->
+<!--                            </h1>-->
+
+<!--                        </div>-->
+<!--                        <group>-->
+<!--                            <group>-->
+<!--                                <field name="patient_id" autocomplete="off"/>-->
+<!--                            </group>-->
+<!--                            <group>-->
+<!--                                <field name="appointment_date" autocomplete="off"/>-->
+<!--                            </group>-->
+
+<!--                        </group>-->
+<!--                        <group>-->
+<!--                            <field name="by_doctor" autocomplete="off"/>-->
+
+<!--                        </group>-->
+<!--                        <group>-->
+<!--                            <field name="notes" autocomplete="off"/>-->
+<!--                        </group>-->
+<!--                        <notebook>-->
+<!--                            <page string="Doctor Prescription" name="doctor_prescription">-->
+
+<!--                            </page>-->
+<!--                            <page string="Growth Record" name="growth_record">-->
+
+<!--                                <div class="d-lg-flex">-->
+<!--                                    <div class="flex-grow-1">-->
+<!--                                        <field name="height"/>-->
+
+<!--                                    </div>-->
+<!--                                </div>-->
+
+
+<!--                            </page>-->
+<!--                            <page string="Medicine" name="medicine">-->
+
+<!--                            </page>-->
+<!--                        </notebook>-->
+<!--                    </sheet>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+        <record id="action_medicine" model="ir.actions.act_window">
+            <field name="name">Medicine</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">medicine.data</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new appointment, the first step of a new sale!
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="medicine_root" name="Medicine" parent="inventory" sequence="4"/>
+        <menuitem id="medicine_stock" name="Medicine Stock" parent="medicine_root" sequence="1" action="action_medicine"/>
+
+    </data>
+
+</odoo>
+
